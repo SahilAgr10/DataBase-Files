@@ -1,0 +1,73 @@
+1- sqlite3->to open sqlite prompt   
+2- sqlite3 name.db-> to create new database
+3- .tables -> to see available tables in name.db
+4- CREATE TABLE table_name(_id INTEGER,name TEXT,price INTEGER,style INTEGER,description TEXT);-> to create table in name.db
+5- .schema table_name-> to see structure of table in name.db
+6- PRAGMA table_info(table_name); -> to get details of table structure
+7- INSERT INTO headphones(_id,name,price,style,description) VALUES (1,"Boat",300,4,"flexible"); -> to insert values in tables
+8-      .header on         |
+sqlite> .mode column	   |this two commands are used for formating tables
+sqlite>  SELECT * FROM headphones;  -> to see table values in headphone table
+ex: 
+_id  name  price  style  description
+---  ----  -----  -----  -----------
+1    Boat  300    4      flexible
+9-  DROP TABLE headphones; -> to delete headphone table in store.db
+ 
+Table constraints in sqlite database !
+PRIMARY KEY  --> ensure uniqness.there can be only one primary key in table
+AUTOINCREMENT --> Automatically calculates new integer when row is added . usefull for ids
+NOT NULL --> implies this value must be entered .
+DEFAULT <VALUE> --> imples if no value is provided you can set default value of your choice
+
+ex:
+ CREATE TABLE headphones(_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                          name TEXT NOT NULL,
+                          price INTEGER NOT NULL,
+                          in_stock INTEGER NOT NULL DEFAULT 0,
+                          description TEXT);
+ INSERT INTO headphones(name,price,description) VALUES ("Boat",300,"flexible");
+sqlite> SELECT * FROM headphones;
+_id  name  price  in_stock  description
+---  ----  -----  --------  -----------
+1    Boat  300    0         flexible
+
+10- To get specific info about row "WHERE" clause is used :
+ex:
+sqlite>  SELECT * FROM headphones WHERE name == "Boat";
+_id  name  price  in_stock  description
+---  ----  -----  --------  -----------
+1    Boat  300    0         flexible 
+
+11- "WHERE" help us to specify about specific row && SELECT help us to specify about column we are interested in && "ORDER BY" helps us to arrange in asc or desc order:
+ex:
+SELECT name,price FROM headphones;
+name     price
+-------  -----
+Boat     300
+Samsung  450
+
+sqlite> SELECT name,price FROM headphones ORDER BY price ASC;
+name     price
+-------  -----
+Boat     300
+Samsung  450
+
+similiarly works for  ORDER BY price DESC;
+
+12- TO update any data we have :
+ UPDATE headphones SET price = 899 WHERE name == "Boat";
+sqlite>  SELECT name,price FROM headphones;
+name     price
+-------  -----
+Boat     899
+Samsung  450
+
+13- TO delete items in table :
+DELETE FROM headphones -> this deletes all rows without being specific 
+DELETE FROM headphones WHERE price >= 200; -> deletes specifies row /rows
+
+
+
+
+

@@ -1,0 +1,109 @@
+C:\Users\agraw>sqlite3
+SQLite version 3.39.3 2022-09-05 11:02:23
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .schema
+sqlite> .databases
+main: "" r/w
+sqlite> ""
+   ...> ;
+Parse error: near """": syntax error
+  "" ;
+  ^--- error here
+sqlite> .open store.db
+sqlite> .databases
+main: C:\Users\agraw\store.db r/w
+sqlite> .tables
+headphones
+sqlite> .schema
+CREATE TABLE headphones(_id INTEGER,name TEXT,price INTEGER,style INTEGER,description TEXT);
+sqlite> INSERT INTO headphones(_id,name,price,style,decription) VALUES (1,"Boat",300,4,"flexible");
+Parse error: table headphones has no column named decription
+sqlite>
+
+C:\Users\agraw>sqlite3
+SQLite version 3.39.3 2022-09-05 11:02:23
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open store.db
+sqlite> .databases
+main: C:\Users\agraw\store.db r/w
+sqlite> .tables
+headphones
+sqlite>  INSERT INTO headphones(_id,name,price,style,description) VALUES (1,"Boat",300,4,"flexible");
+sqlite> PRAGMA table_info(headphones);
+0|_id|INTEGER|0||0
+1|name|TEXT|0||0
+2|price|INTEGER|0||0
+3|style|INTEGER|0||0
+4|description|TEXT|0||0
+sqlite> .show tables
+Usage: .show
+sqlite> tables
+   ...> ;
+Parse error: near "tables": syntax error
+  tables ;
+  ^--- error here
+sqlite> .tables
+headphones
+sqlite> SELECT * FROM headphones;
+1|Boat|300|4|flexible
+sqlite> .header on
+sqlite> .mode column
+sqlite>  SELECT * FROM headphones;
+_id  name  price  style  description
+---  ----  -----  -----  -----------
+1    Boat  300    4      flexible
+sqlite> DROP TABLE headphones;
+sqlite> .tables;
+Error: unknown command or invalid arguments:  "tables;". Enter ".help" for help
+sqlite> .tables
+sqlite> CREATE TABLE headphones(_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,price INTEGER NOT NULL,in_stock INTEGER NOT NULL DEFAULT 0,description TEXT);
+sqlite> .tables
+headphones
+sqlite>  INSERT INTO headphones(name,price,in_stock,description) VALUES ("Boat",300,"flexible");
+Parse error: 3 values for 4 columns
+sqlite> INSERT INTO headphones(name,price,description) VALUES ("Boat",300,"flexible");
+sqlite> SELECT * FROM headphones;
+_id  name  price  in_stock  description
+---  ----  -----  --------  -----------
+1    Boat  300    0         flexible
+sqlite>  INSERT INTO headphones(name,price,description) VALUES ("Samsung",450,"Sustainable");
+sqlite>  SELECT * FROM headphones;
+_id  name     price  in_stock  description
+---  -------  -----  --------  -----------
+1    Boat     300    0         flexible
+2    Samsung  450    0         Sustainable
+sqlite>  SELECT * FROM headphones WHERE name == "Boat";
+_id  name  price  in_stock  description
+---  ----  -----  --------  -----------
+1    Boat  300    0         flexible
+sqlite> SELECT name,price FROM headphones;
+name     price
+-------  -----
+Boat     300
+Samsung  450
+sqlite>  SELECT * FROM headphones ORDER BY price ASC;
+_id  name     price  in_stock  description
+---  -------  -----  --------  -----------
+1    Boat     300    0         flexible
+2    Samsung  450    0         Sustainable
+sqlite> SELECT name,price FROM headphones ORDER BY price ASC;
+name     price
+-------  -----
+Boat     300
+Samsung  450
+sqlite> UPDATE headphones SET price = 899 WHERE name == "Boat";
+sqlite>  SELECT name,price FROM headphones;
+name     price
+-------  -----
+Boat     899
+Samsung  450
+sqlite> UPDATE headphones SET in_stock = 150 ;
+sqlite> SELECT * FROM headphones;
+_id  name     price  in_stock  description
+---  -------  -----  --------  -----------
+1    Boat     899    150       flexible
+2    Samsung  450    150       Sustainable
