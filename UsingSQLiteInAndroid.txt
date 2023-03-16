@@ -8,6 +8,8 @@ To setUp a database , following are requirements :
    -SQLiteOpenHelper Class help us create ,open and manage database connections 
      -> How  SQLiteOpenHelper Class Works ?
          1.It will create SQLite database when first accessed using either getReadableDatabase() method || using getWritableDatabase() method
+	 	getReadableDatabase()-used for read or select type actions
+		getWritableDatabase()-used for create,delete,update database
 	   2. Next time we open app , instaed of creating it gives you connection to existed database
 	   3. Helps in updating Schema if version changes
 	    Thus SQLiteOpenHelper Class is inCharge of creating Databases.
@@ -19,4 +21,10 @@ IMPLEMENT SQLiteOpenHelper
 3. Create a constructor
 4. Implement the onCreate() method - this method is for when the database is first created
 5. Implement on Upgrade() method - is used when the schema of the database changes (ex: adding a different coloumn)
+6. Create and/or open a database to read from it
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+	-using SQLiteDatabase object Activities can communicate with databases
+7. ContentValues are used to insert new rows into tables. Each Content Values object represents a single table row as a map of column names to values.
+   Queries in Android are returned as Cursor objects. Rather than extracting and returning a copy of the result values, Cursors are pointers to the result set within the    underlying data. Cursors provide a managed way of controlling your position (row) in the result set of a database query.
+
 
