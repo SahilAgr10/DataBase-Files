@@ -1,16 +1,16 @@
 To setUp a database , following are requirements :
 1. Define Schema : Structure of database
 2. Create Contract Class : 
-    -Way to group together all constants asociated with database 
-    -used when generating SQL commands which removes possibility of introducing spelling errors
+    -Way to group together all constants asociated with database is called a Contract
+    -this is used when generating SQL commands which removes possibility of introducing spelling errors
     - easy to update data Schema
 3. Here we implment Android class that will help us create the database in SQLite.
    -SQLiteOpenHelper Class help us create ,open and manage database connections 
      -> How  SQLiteOpenHelper Class Works ?
-         1.It will create SQLite database when first accessed using either getReadable database method || using getWritableDatabase() method
+         1.It will create SQLite database when first accessed using either getReadableDatabase() method || using getWritableDatabase() method
 	   2. Next time we open app , instaed of creating it gives you connection to existed database
-	   3. Helps is updating Schema if version changes
-	    Thus SQLiteOpenHelper Class is inChaarge of creating Databases.
+	   3. Helps in updating Schema if version changes
+	    Thus SQLiteOpenHelper Class is inCharge of creating Databases.
 
 
 IMPLEMENT SQLiteOpenHelper
