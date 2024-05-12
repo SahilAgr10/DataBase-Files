@@ -1,0 +1,12 @@
+This query are used in MYSQl software :
+  -CREATE DATABASE college ;       used to create database
+  -DROP DATABASE college ;         used to delete database
+  -USE college;                    used to commit changes in college 
+  -CREATE TABLE student (          used to create schema of a table
+      id INT PRIMARY KEY,
+      name VARCHAR(50),
+      age INT NOT NULL
+      );
+  -INSERT INTO student VALUES (1, "AMAN", 26);  used to add values in schema /data entry 
+   INSERT INTO student VALUES (2, "SHRADHA", 24);
+  -SELECT * FROM student;                   used to print whole table and its values
