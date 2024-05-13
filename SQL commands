@@ -26,8 +26,14 @@ Constraints :
       UNIQUE
       DEFAULT       EX: coll int DEFAULT 25000
       FOREIGN KEY   prevent actions that would destroy links between tables
+      CHECK it can limit the values allowed in a column
 EX: CREATE TABLE temp (
-      cust id int,
-      FOREIGN KEY (cust_id references customer(id) );
+      cust_id INT PRIMARY KEY,
+      FOREIGN KEY (cust_id references customer(id),
+      city VARCHAR(50),
+      age INT,
+      CONSTRAINT age_check CHECK (age >= 18 AND city="Delhi"));
+
+
 
 
