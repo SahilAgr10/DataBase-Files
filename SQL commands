@@ -13,9 +13,21 @@ This query are used in MYSQl software :
 - SHOW DATABASES;                           used to show to all databases present
 -SHOW TABLES ;                              used to show all tables present in the database
 
-INSERT INTO student       used for multiple entries
+INSERT INTO student       { used for multiple entries }
 (rollno, name)
 VALUES
 (101, "karan"),
 (102, "arjun"),
 (103, "ram");
+
+Constraints :
+      NOT NULL      EX: coll int NOT NULL;
+      PRIMARY KEY
+      UNIQUE
+      DEFAULT       EX: coll int DEFAULT 25000
+      FOREIGN KEY   prevent actions that would destroy links between tables
+EX: CREATE TABLE temp (
+      cust id int,
+      FOREIGN KEY (cust_id references customer(id) );
+
+
